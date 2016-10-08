@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.UserDao">
+    <!--association的嵌套的结果映射方式。 实体属性与列的映射  -->
+    <resultMap id="user" type="com.demo.entities.User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="age" column="age"/>
+        <result property="phone" column="phone"/>
+        <result property="password" column="password"/>
+        <result property="date" column="date"/>
+        <result property="status" column="status"/>
+        <association property="userRole" column="role_id" javaType="com.demo.entities.UserRole" select="getUserRole"/>
+        <!--<id property="id" column="id"/>-->
+        <!--<result property="name" column="name"/>-->
+        <!--</association>-->
+        <!--<collection property="userRole" column="role_id" select="getUserRole" javaType="Object" ofType="com.demo.entities.UserRole"/>-->
+    </resultMap>
+
+    <resultMap id="userRole" type="com.demo.entities.UserRole">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <select id="login" resultMap="user">
+        SELECT * FROM user WHERE id = #{id} AND password = #{password}
+    </select>
+
+    <select id="getUserDataById" resultMap="user">
+        SELECT u.*
+        FROM user u WHERE u.id = #{id}
+    </select>
+
+    <delete id="deleteUser">
+        DELETE FROM user WHERE id = #{id};
+    </delete>
+
+    <select id="getUserRole" resultMap="userRole">
+        SELECT * FROM user_role WHERE id = #{role_id}
+    </select>
+
+    <select id="loadUserInfo" resultType="java.util.HashMap">
+        SELECT name as userName, age as userAge, phone as userPhone FROM user
+        <where>
+            <if test="keyword != null and keyword != ''">
+                (name LIKE keyword OR phone LIKE keyword)
+            </if>
+        </where>
+    </select>
+
+    <select id="updatePwd" parameterType="java.util.Map" statementType="CALLABLE" resultType="String">
+        {call updatePwd(
+            #{userId,jdbcType=BIGINT,mode=IN},
+            #{newPwd,jdbcType=BIGINT,mode=IN},
+            #{returnVal,jdbcType=VARCHAR,mode=OUT})
+        }
+    </select>
+</mapper>

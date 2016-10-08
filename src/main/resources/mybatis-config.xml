@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC
+        "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 日志打印 -->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <!-- 创建自定义类型转换器 -->
+    <typeHandlers>
+        <package name="com.demo.common.enums.handler"/>
+        <!--<typeHandler handler="com.demo.common.enums.handler.UserStatusEnumOrdinalTypeHandler"-->
+        <!--javaType="com.demo.common.enums.UserStatus"/>-->
+        <!--<typeHandler handler="com.demo.common.enums.handler.TestEnumOrdinalTypeHandler" javaType="com.demo.common.enums.Test"/>-->
+    </typeHandlers>
+
+    <!-- 分页插件 -->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
+</configuration>

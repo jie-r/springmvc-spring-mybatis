@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 通用简单SQL BaseMapper -->
+<mapper namespace="com.demo.dao.CommonMapper">
+    <!-- 通用简单where条件组装 -->
+    <sql id="conditionSql">
+        <where>
+            <foreach item="item" index="key" collection="conditionMap"
+                     open="" separator="AND" close="">
+                ${key} = #{item}
+            </foreach>
+        </where>
+    </sql>
+
+    <!-- 通用更新sql组装 -->
+    <update id="updateByCondition">
+        UPDATE ${tableName}
+        <set>
+            <foreach item="item" index="key" collection="relationMap"
+                     open="" separator="," close="">
+                ${key} = #{item}
+            </foreach>
+        </set>
+        <include refid="conditionSql"/>
+    </update>
+
+    <!-- 返回某一列的所有值或单个值，return：List -->
+    <select id="selectSingleColumn" resultType="Object">
+        SELECT ${columnName} FROM ${tableName}
+        <include refid="conditionSql"/>
+    </select>
+
+    <!-- 根据条件删除数据 -->
+    <delete id="deleteByCondition">
+        DELETE FROM ${tableName}
+        <include refid="conditionSql"/>
+    </delete>
+</mapper>

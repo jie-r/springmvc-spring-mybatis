@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+    <title>测试</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="/Demo/startbootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/Demo/startbootstrap/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/Demo/startbootstrap/css/ace.min.css"/>
+</head>
+<body class="login-layout">
+<div class="main-container">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="login-container">
+                    <div class="center">
+                        <h1>
+                            <%--<img src="${webRoot}/bootstrap/img/logo.jpg" width="40" height="40"
+                                     style="border-radius: 5px"/>--%>
+                            <span class="red">测试</span>
+                            <span class="white">后台管理</span>
+                        </h1>
+                        <%--<h4 class="blue">&copy; 圆桌骑士</h4>--%>
+                    </div>
+
+                    <div class="space-6"></div>
+
+                    <div class="position-relative">
+                        <div id="login-box" class="login-box visible widget-box no-border" style="margin-top: 150px;">
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <h3 class="header blue lighter bigger" style="text-align: center">
+                                        登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;陆
+                                    </h3>
+
+                                    <div class="space-6"></div>
+
+                                    <form method="post" action="/Demo/user/client/login">
+                                        <fieldset>
+                                            <label class="block clearfix">
+												<span class="block input-icon input-icon-right">
+													<input type="text" class="form-control" placeholder="Username"
+                                                           name="id"/>
+												</span>
+                                            </label>
+
+                                            <label class="block clearfix">
+												<span class="block input-icon input-icon-right">
+													<input type="password" class="form-control" placeholder="Password"
+                                                           name="password"/>
+												</span>
+                                            </label>
+
+                                            <div class="space"></div>
+
+                                            <div class="clearfix">
+                                                <button type="submit"
+                                                        class="width-35 pull-right btn btn-sm btn-primary">
+                                                    进入
+                                                </button>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+
+                                </div><!-- /widget-main -->
+                            </div><!-- /widget-body -->
+                        </div><!-- /login-box -->
+                    </div><!-- /position-relative -->
+                </div>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div>
+</div><!-- /.main-container -->
+</body>
+</html>
